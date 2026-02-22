@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vue First Page</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Vue Tamplate Page -->
+    <main class="container-fluid m-0 min-vh-100" id="app">
+        <nav class="navbar p-3 bg-green-500" id="nav-sc">
+            <div class="container-fluid">
+                <a class="navbar-brand font-serif text-white" href="#">Vue Tutorial</a>
+            </div>
+        </nav>
+        <div class="container flex justify-center items-center flex-col p-4">
+            <h1 class="font-serif">Vue First Page</h1>
+            <p class="font-mono m-2">{{ message }}</p>
+            <div class="container-lg flex items-center justify-center mt-2">
+                <button class="btn btn-primary me-2 p-3" @click="HandleChangeTextA">
+                    <b class="font-sans-serif">Cambia Stato A</b>
+                </button>
+                <button class="btn btn-dark ms-2 p-3" @click="HandleChangeTextB">
+                    <b class="font-sans-serif">Cambia Stato B</b>
+                </button>
+                <button v-if="editMessage" class="btn btn-dark ms-2 p-3" @click="HandleResetText">
+                    <b class="font-sans-serif">Resetta</b>
+                </button>
+            </div>
+        </div>
+
+        <div class="container flex justify-center items-center flex-col p-4">
+            <img :src="imgs" alt="img-vue" class="img-thumbnail w-50">
+        </div>
+
+        <div class="container flex justify-center items-center flex-col p-4">
+            <div mplate class="card mb-5" v-if='isShow'>
+                    <div class="card-body">
+                        {{ "FullName: " + cardUser.first + " " + cardUser.last }}
+                    </div>
+            </div>
+           <div class="w-form-50 flex justify-center items-center flex-col bg-secondary-subtle p-4 rounded">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" v-model="TextFirstName" id="floatingInput" placeholder="text">
+                    <label for="floatingInput">FirstName</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPassword" placeholder="text" v-model="TextLastName">
+                    <label for="floatingPassword">LastName</label>
+                </div>
+                <button type="button" class="btn btn-primary mt-4" @click="SetCardText">Clicca e Invia</button>
+           </div>
+        </div>
+
+        <div :class='`toast end-0 bottom-0 position-fixed m-5 ${editMessage ? "show" : "hide"}`' role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Aggiornamento</strong>
+                <small>vue-log</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ "il Componente è passato al: " + message }}
+            </div>
+        </div>
+
+        <div class="container flex justify-center items-center flex-col p-4">
+            <h2 class="font-semibold text-lg font-sans mb-4">Lista Completa</h2>
+            <ul class="list-group w-full">
+                <li class="list-group-item" v-for="(text, index) in isPostsList" v-key="`post-${text.id}`"><b class="text-sm font-semibold mx-auto">{{ text.id }}:</b> {{ text.title }}</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+</body>
+</html>
