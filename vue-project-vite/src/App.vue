@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import { BApp, BNavbar, BButton } from "bootstrap-vue-next"
+import { BApp, BNavbar, BButton, BFormRadioGroup } from "bootstrap-vue-next"
 import CountsTable from "./components/CountsTable.vue";
-import { ref } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
+import CardUser from "./components/CardUser.vue";
+import BoxColorChange from "./components/BoxColorChange.vue";
+import SelectionA from "./assets/SelectionA.vue";
+import SelectionB from "./assets/SelectionB.vue";
+import SelectionC from "./assets/SelectionC.vue";
 
 const isShow = ref(false);
 const count = ref(0);
+const isSelectionChange = computed(() => {
+  return isSelected.value === 'SelectionA' ? SelectionA : isSelected.value === 'SelectionC' ? SelectionB : SelectionC;
+})
 
 const HandleCountAdd = () => {
    count.value++;
@@ -13,6 +21,15 @@ const HandleCountAdd = () => {
 const HandleShowCount = () => {
   isShow.value = !isShow.value;
 }
+
+const isSelected = ref("");
+const options = [
+  {text: 'Red', value: 'SelectionA'},
+  {text: 'Blue', value: 'SelectionB'},
+  {text: 'Yellow', value: 'SelectionC'},
+];
+
+watchEffect(() => { console.log(isSelected.value) });
 
 </script>
 
@@ -37,6 +54,31 @@ const HandleShowCount = () => {
           <BButton variant="success" @click="HandleShowCount">Mostra Contatore</BButton>
            <CountsTable title="Contatore A" text="Clicca qui!!" v-on:click-count="HandleCountAdd" :count="count" :show="isShow" />
         </section>
+
+        <section class="section-components">
+          <CardUser :title="'Mario Rossi'" :subtitle="'Dettaglio Utente'">
+            <template #text-message>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+              Phasellus iaculis quis nisl ac venenatis. Cras eleifend erat leo. Pellentesque ligula quam, suscipit ac pharetra a, auctor ut ipsum.
+            </template>
+          </CardUser>
+        </section>
+
+        <section class="section-components">
+            <div class="color-btns">
+                 <BFormRadioGroup
+                  v-model="isSelected"
+                  :options="options"
+                  button-variant="primary"
+                  name="radios-btn-default"
+                  buttons
+                />
+            </div>
+            <div class="w-auto h-auto mt-4">
+              <!-- Uso di Componets -->
+              <component :is="isSelectionChange"></component>
+            </div>
+        </section>
       </div>
 
     </main>
@@ -54,7 +96,9 @@ const HandleShowCount = () => {
 
 .main-sc{
   width: 100%;
-  height: 100dvh;
+  height: auto;
+  padding-bottom: 6em;
+  padding-top: 6em;
   background-color: #f8f9fa;
 }
 
@@ -83,7 +127,6 @@ const HandleShowCount = () => {
   justify-content: center;
   flex-direction: column;
   gap: 2px;
-  padding-top: 6em;
 }
 
 .section-components{
@@ -94,5 +137,10 @@ const HandleShowCount = () => {
   justify-content: center;
   flex-direction: column;
   gap: 2px;
+}
+
+.color-btns{
+   width: auto;
+   padding: 3px 4px;
 }
 </style>
