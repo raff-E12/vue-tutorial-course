@@ -1,0 +1,95 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Primo Task",
+      "sub": "Task 1",
+      "text": "Mi piacciono le Arance",
+      "favourites": true
+    },
+    {
+      "id": "2",
+      "title": "Secondo Task",
+      "sub": "Task 2",
+      "text": "Mi piacciono le Mele",
+      "favourites": false
+    },
+    {
+      "id": "3",
+      "title": "Terzo Task",
+      "sub": "Task 3",
+      "text": "Mi piacciono le Arachidi",
+      "favourites": false
+    },
+    {
+      "id": "4",
+      "title": "Quarto Task",
+      "sub": "Task 4",
+      "text": "Mi piacciono le Pere",
+      "favourites": true
+    },
+    {
+      "id": "5",
+      "title": "Quinto Task",
+      "sub": "Task 5",
+      "text": "Mi piacciono i Limoni",
+      "favourites": true
+    },
+    {
+      "id": "6",
+      "title": "Sesto Task",
+      "sub": "Task 6",
+      "text": "Mi piacciono le Fragole",
+      "favourites": false
+    },
+    {
+      "id": "7",
+      "title": "Settimo Task",
+      "sub": "Task 7",
+      "text": "Mi piacciono i Mandarini",
+      "favourites": true
+    },
+    {
+      "id": "8",
+      "title": "Ottavo Task",
+      "sub": "Task 8",
+      "text": "Mi piacciono le Banane",
+      "favourites": false
+    },
+    {
+      "id": "9",
+      "title": "Nono Task",
+      "sub": "Task 9",
+      "text": "Mi piacciono i Kiwi",
+      "favourites": true
+    },
+    {
+      "id": "10",
+      "title": "Decimo Task",
+      "sub": "Task 10",
+      "text": "Mi piacciono le Ciliegie",
+      "favourites": false
+    },
+    {
+      "id": "11",
+      "title": "Undicesimo Task",
+      "sub": "Task 11",
+      "text": "Mi piacciono i Mirtilli",
+      "favourites": false
+    },
+    {
+      "id": "12",
+      "title": "Dodicesimo Task",
+      "sub": "Task 12",
+      "text": "Mi piacciono le Pesche",
+      "favourites": true
+    },
+    {
+      "id": "13",
+      "title": "Tredicesimo Task",
+      "sub": "Task 13",
+      "text": "Mi piacciono le Albicocche",
+      "favourites": false
+    }
+  ]
+}
