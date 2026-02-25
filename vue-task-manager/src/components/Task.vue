@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue';
 import { useTaskStore } from '../store/TaskStore';
-
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps({
     title: {
@@ -17,7 +17,7 @@ const props = defineProps({
         default: "Titolo Default della Card"
     },
     id: {
-        type: Number,
+        type: String,
         default: 0
     },
     fav: {
@@ -29,6 +29,11 @@ const props = defineProps({
 const { text: isText, subtitle: isSubTitle, title: isTitle, id: isID } = toRefs(props);
 const storageTask = useTaskStore();
 const { toogleFav, deleteTask } = storageTask;
+const route = useRouter();
+
+const HandleLinkDetailRoute = (id: string) => {
+    route.push({ name: 'detail-task', params: { taskId: id } });
+}
 
 </script>
 
@@ -43,6 +48,9 @@ const { toogleFav, deleteTask } = storageTask;
                 <button type="button" class="btn btn-primary" @click="toogleFav(isID)">
                     <i v-if="fav" class="fa-solid fa-heart-circle-minus"></i>
                     <i v-if="!fav" class="fa-solid fa-heart-circle-plus"></i>
+                </button>
+                <button type="button" class="btn btn-success" @click="HandleLinkDetailRoute(isID)">
+                    <i class="fa-solid fa-circle-info"></i>
                 </button>
              </div>
         </div>

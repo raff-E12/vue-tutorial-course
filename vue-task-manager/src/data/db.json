@@ -5,7 +5,7 @@
       "title": "Primo Task",
       "sub": "Task 1",
       "text": "Mi piacciono le Arance",
-      "favourites": true
+      "favourites": false
     },
     {
       "id": "2",

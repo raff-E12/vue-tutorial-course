@@ -62,7 +62,7 @@ export const useTaskStore = defineStore("task-store", {
             }
         },
 
-        async toogleFav(id: number){
+        async toogleFav(id: string){
           try {
             if (confirm('Sicuro di Voler Procedere?')) {
             const task = this.task.find((t) => t.id === id);
@@ -93,7 +93,7 @@ export const useTaskStore = defineStore("task-store", {
             }
         },
 
-        async deleteTask(id: number){
+        async deleteTask(id: string){
           try {
             if (confirm('Sicuro di Volerlo Eliminare?')) {
                 this.task = this.task.filter((t) => t.id !== id);

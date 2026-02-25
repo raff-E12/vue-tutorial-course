@@ -43,7 +43,7 @@ const HandleResetInput = () => {
 <template>
     <div class="box-form-drop">
       <BDropdown
-        placement="bottom-end"
+        placement="bottom"
         variant="success"
         auto-close="outside"
         text="Aggiungi Task"
