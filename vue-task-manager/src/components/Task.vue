@@ -45,7 +45,7 @@ const HandleLinkDetailRoute = (id: string) => {
             <p class="card-text">{{ isText }}</p>
              <div class="w-auto d-flex flex-rown gap-2">
                 <button type="button" class="btn btn-primary" @click="deleteTask(isID)"><i class="fa-solid fa-trash"></i></button>
-                <button type="button" class="btn btn-primary" @click="toogleFav(isID)">
+                <button type="button" class="btn btn-primary" @click="toogleFav(isID, fav)">
                     <i v-if="fav" class="fa-solid fa-heart-circle-minus"></i>
                     <i v-if="!fav" class="fa-solid fa-heart-circle-plus"></i>
                 </button>

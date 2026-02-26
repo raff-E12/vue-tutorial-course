@@ -90,6 +90,13 @@
       "sub": "Task 13",
       "text": "Mi piacciono le Albicocche",
       "favourites": false
+    },
+    {
+      "id": "14",
+      "title": "Task Generica",
+      "sub": "Sottotitolo",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies, nisi ut ornare euismod, dui massa porta eros, eget vestibulum enim ante a augue.",
+      "favourites": false
     }
   ]
 }

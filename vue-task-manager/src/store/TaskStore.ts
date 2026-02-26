@@ -1,5 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
+import { AddTaskServices, deleteTaskServices, GetTaskListServices, PatchTaskServices } from "../services/api/task.service";
 
 // Creazione dello store
 
@@ -43,17 +44,12 @@ export const useTaskStore = defineStore("task-store", {
     actions: {
 
       async getTasks() {
-            this.loading = true;
             try {
-                const response = await axios.get(`${SERVER_URL}/tasks`); //Uso di Json-Server
-
-                if (response.status !== 200) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const list = response.data;
-                this.task = list ?? [];
-
+                this.loading = true;
+                const response = await GetTaskListServices(); //Uso di Json-Server
+                const list: any = response ?? [];
+                this.task = list;
+                
             } catch (error) {
                 console.error("Errore nel recupero dei task:", error);
                 this.task = [];
@@ -62,34 +58,29 @@ export const useTaskStore = defineStore("task-store", {
             }
         },
 
-        async toogleFav(id: string){
+        async toogleFav(id: string, addCondition:boolean){
           try {
             if (confirm('Sicuro di Voler Procedere?')) {
             const task = this.task.find((t) => t.id === id);
             task!.favourites = !task?.favourites;
-
-            const response = await axios.patch(`${SERVER_URL}/tasks/${id}`, task);
-            if (response.status !== 200) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            window.alert("Aggiunto ai Preferiti!!");
+            const response = await PatchTaskServices(id, task);
            }
           } catch (error) {
             console.error(error)
+          } finally {
+            if(addCondition) window.alert("Aggiunto ai Preferiti!!");
+            if(!addCondition) window.alert("Rimosso dai Preferiti!!");
           }
         },
         
         async addTask(task: Task){
             try {
                 this.task.push(task);
-                const response = await axios.post(`${SERVER_URL}/tasks`, task);
-                if (response.status !== 200) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                window.alert("Task Aggiunta con successo");
+                const response = await AddTaskServices(task);
             } catch (error) {
                 console.error(error);
+            } finally {
+                window.alert("Task Aggiunta con successo");
             }
         },
 
@@ -97,14 +88,12 @@ export const useTaskStore = defineStore("task-store", {
           try {
             if (confirm('Sicuro di Volerlo Eliminare?')) {
                 this.task = this.task.filter((t) => t.id !== id);
-                const response = await axios.delete(`${SERVER_URL}/tasks/${id}`);
-                 if (response.status !== 200) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                window.alert('Task Eliminato!!');
+                const response = await deleteTaskServices(id);
             }
           } catch (error) {
             console.error(error)
+          } finally {
+             window.alert('Task Eliminato!!');
           }
         }
     }
